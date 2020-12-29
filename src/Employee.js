@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import Departent from './Departent';
-import { Consumer } from './Context';
+import { MyContext } from './Context';
 
 class Employee extends Component {
+
+    static contextType = MyContext;
+
     render() {
         return (
             <>
-                <Consumer>
-                    {
-                        ({ stateData, increaseSalary }) =>
-                            <>
-                                <h2>Name : {stateData.name}</h2>
-                            </>
-                    }
-                </Consumer>
+                <h3>Employee: {this.context.stateData.name}</h3>
                 <Departent />
             </>
         );
