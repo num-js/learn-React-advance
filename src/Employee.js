@@ -12,11 +12,9 @@ class Employee extends Component {
                             <>
                                 <h2>Name : {stateData.name}</h2>
                             </>
-                            
                     }
-                    <Departent />
                 </Consumer>
-                
+                <Departent />
             </>
         );
     }
