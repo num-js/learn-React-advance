@@ -25,10 +25,11 @@ class Salary extends Component {
 
 
                 <h4>Salary: {this.context.stateData.salary}</h4>
+                <h4>Experience: {this.context.stateData.experience}</h4>
                 <button
-                    onClick={this.context.increaseSalary}
+                    onClick={this.context.increaseExperience}
                 >
-                    Change Salary
+                    Increase 1 Year Experience
                 </button>
             </>
         );
