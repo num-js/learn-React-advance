@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { MyContext } from './App';
+import { Consumer } from './Context';
 
 class Salary extends Component {
 
     render() {
         return (
             <>
-                <h3>Salary Component</h3>
-                <MyContext.Consumer>
+                <Consumer>
                     {
-                        ({salary, increaseSalary}) =>
+                        ({stateData, increaseSalary}) =>
                             <>
-                                <h4>Salary: {salary}</h4>
+                                <h4>Salary: {stateData.salary}</h4>
                                 <button
                                     onClick = {increaseSalary}
                                 >
@@ -19,7 +18,7 @@ class Salary extends Component {
                                 </button>
                             </>
                     }
-                </MyContext.Consumer>
+                </Consumer>
             </>
         );
     }

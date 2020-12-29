@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Employee from './Employee';
 
-//Creating ContextAPI
-export const MyContext = React.createContext();
+import {Provider} from './Context';
 
 class App extends Component {
     state = {
@@ -20,16 +19,16 @@ class App extends Component {
 
     render() {
         const data = {
-            salary: this.state.salary,
+            stateData: this.state,
             increaseSalary: this.increaseSalary
         }
 
         return (
             <>
                 <h2>App Component</h2>
-                <MyContext.Provider value={data}>
+                <Provider value={data}>
                     <Employee />
-                </MyContext.Provider>
+                </Provider>
             </>
         );
     }
