@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { MyContext } from './App';
 
 class Salary extends Component {
 
