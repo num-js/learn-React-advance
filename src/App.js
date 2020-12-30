@@ -33,8 +33,6 @@ class App extends Component {
         this.setState({ pro: 'Full stack Developer' });
     }
 
-
-
     render() {
         const data = {
             stateData: this.state,
@@ -43,8 +41,8 @@ class App extends Component {
 
         return (
             <>
-                <h2>App Component</h2>
                 <Provider value={data}>
+                    <h2>App Component</h2>
                     <Employee />
                 </Provider>
             </>
