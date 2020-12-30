@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Employee from './Employee';
 
-import {Provider} from './Context';
+import { Provider } from './Context';
 
 class App extends Component {
     state = {
@@ -25,8 +25,10 @@ class App extends Component {
 
         return (
             <>
-                <h2>App Component</h2>
-                <Employee />
+                <Provider value={data}>
+                    <h2>App Component</h2>
+                    <Employee />
+                </Provider>
             </>
         );
     }
