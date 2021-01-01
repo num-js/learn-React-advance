@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import BookList from './components/BookList';
-import Navbar from './components/Navbar';
-import './App.css';
-import ThemeContextProvider from './contexts/ThemContext';
+import SongList from './components/SongList';
 
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <ThemeContextProvider>
-                    <Navbar />
-                    <BookList />
-                </ThemeContextProvider>
+                <SongList />
             </div>
         );
     }
