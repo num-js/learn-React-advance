@@ -12,9 +12,9 @@ class Navbar extends Component {
         return (
             <>
                 <nav style={{ background: theme.ui, color: theme.syntax }}>
-                    <label class="switch">
-                        <input type="checkbox" defaultChecked={theme===light ? true : false} />
-                        <span class="slider round"></span>
+                    <label className="switch">
+                        <input type="checkbox" onClick={this.context.toggleTheme} defaultChecked={theme===light ? false : true} />
+                        <span className="slider round"></span>
                     </label>
                     <h1><u>Context App</u></h1>
                     <ul>
