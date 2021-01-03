@@ -16,6 +16,7 @@ class Navbar extends Component {
                         <input type="checkbox" onClick={this.context.toggleTheme} defaultChecked={theme===light ? false : true} />
                         <span className="slider round"></span>
                     </label>
+                    <br />
                     <h1><u>Context App</u></h1>
                     <ul>
                         <li>Home</li>
