@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const SongList = () => {
 
@@ -7,27 +7,39 @@ const SongList = () => {
         { title: 'Ahmed' },
         { title: 'NumDev' },
     ]);
-
     const [newSong, setNewSong] = useState('');
+    const [salary, setSalary] = useState(15000);
 
-    const addSong = () => {
+    useEffect(() => {
+        console.log('Use Effect Ran for Songs...');
+    }, [songs]);
+
+    useEffect(() => {
+        console.log('Use Effect Ran for Salary...');
+    }, [salary]);
+
+    
+    const addSong = (e) => {
+        e.preventDefault();
         if (newSong !== '') {
             setSongs([{ title: newSong }, ...songs]);
             setNewSong('');
-        }else{
+        } else {
             alert('Enter New Song Name');
         }
     }
 
     return (
         <div className="song-list">
-            <input type="text"
-                name="setNewSong"
-                value={newSong}
-                onChange={(e) => setNewSong(e.target.value)}
-                placeholder="New Song..."
-            />
-            <button onClick={addSong}>Add Song</button>
+            <form onSubmit={addSong}>
+                <input type="text"
+                    name="setNewSong"
+                    value={newSong}
+                    onChange={(e) => setNewSong(e.target.value)}
+                    placeholder="New Song..."
+                />
+                <button type="submit">Add Song</button>
+            </form>
             <ul>
                 {songs.map((song, index) => {
                     return (
@@ -35,6 +47,9 @@ const SongList = () => {
                     )
                 })}
             </ul>
+
+            <h3>Salary: {salary}</h3>
+            <button onClick={() => setSalary(salary + 5000)}>Increase Salary</button>
         </div>
     );
 }
