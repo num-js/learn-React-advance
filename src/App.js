@@ -1,61 +1,52 @@
-import React, {useContext} from 'react';
+import React, { useReducer, useEffect } from 'react';
 
-const NameContext = React.createContext();
-const ProContext = React.createContext();
-
-const Coder2 = () => {
-    const nameContext = useContext(NameContext);
-    const proContext = useContext(ProContext);
-
-    return (
-        <>
-            <div>Coder2---</div> 
-            <div>
-                Name: {nameContext.name}
-            </div> 
-            <div>
-                Pro: {proContext.pro}
-            </div> 
-        </>
-    );
+const initialState = {
+    name: "Numan",
+    pro: ["MERN", "Full Stack", "MEVN"]
 }
 
-class Coder1 extends React.Component {
-    static contextType = NameContext
-    static contextType = ProContext
-    render() {
-        return (
-            <div>
-                <div>Coder1---</div>
-                Name: {this.context.name} <br />
-                Pro: {this.context.pro}
+const myReducer = (state, action) => {
+    switch (action.type) {
+        case 'CHANGE_NAME':
+            return {
+                ...state,
+                name: action.payload
+            }
 
-                <br/>
-                <br/>
-                <Coder2 />
-            </div>
-        );
+        default:
+            return state;
     }
 }
 
-const nameData = {
-    name: 'Numan',
-}
-const proData = {
-    pro: 'MERN',
-}
-
-
 const App = () => {
+
+    const [data, dispatch] = useReducer(myReducer, initialState)
+    const [data2, dispatch2] = useReducer(myReducer, initialState)
+
+    console.log(data);
+
+
+    const getName = () => {
+        fetch('https://jsonplaceholder.typicode.com/users/1')
+            .then(res => res.json())
+            .then(data => {
+                dispatch({ type: 'CHANGE_NAME', payload: data.name })
+            })
+    }
+
     return (
-        <>
-            <NameContext.Provider value={nameData}>
-                <ProContext.Provider value={proData}>
-                    <br />
-                    <Coder1 />
-                </ProContext.Provider>
-            </NameContext.Provider>
-        </>
+        <div>
+            <h3>Hello {data.name}</h3>
+            <h3>Pro {data.pro[0]}</h3>
+
+            <button onClick={getName}>changeName</button>
+
+            <br />
+            <h3>I m {data2.name}</h3>
+            <h3>Pro {data2.pro[1]}</h3>
+            
+            <button onClick={()=> dispatch2({type: 'CHANGE_NAME', payload: "MD"})}>changeName</button>
+        </div>
     );
 }
 
