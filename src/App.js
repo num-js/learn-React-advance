@@ -1,35 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 const NameContext = React.createContext();
 const ProContext = React.createContext();
 
 const Coder2 = () => {
+    const nameContext = useContext(NameContext);
+    const proContext = useContext(ProContext);
+
     return (
         <>
-            <br />
-            <br />
-            <div>Coder2---</div>
-            <NameContext.Consumer>
-                {
-                    (data) => {
-                        return (
-                            <ProContext.Consumer>
-                                {
-                                    (data) => {
-                                        return (
-                                            <>
-                                                Hello {data.name}
-                                                <br />
-                                                Pro: {data.pro}
-                                            </>
-                                        )
-                                    }
-                                }
-                            </ProContext.Consumer>
-                        )
-                    }
-                }
-            </NameContext.Consumer>
+            <div>Coder2---</div> 
+            <div>
+                Name: {nameContext.name}
+            </div> 
+            <div>
+                Pro: {proContext.pro}
+            </div> 
         </>
     );
 }
@@ -44,6 +30,8 @@ class Coder1 extends React.Component {
                 Name: {this.context.name} <br />
                 Pro: {this.context.pro}
 
+                <br/>
+                <br/>
                 <Coder2 />
             </div>
         );
