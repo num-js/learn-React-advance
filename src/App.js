@@ -1,8 +1,10 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+
+const myContext = createContext();
 
 const initialState = {
-    name: "Numan",
-    pro: ["MERN", "Full Stack", "MEVN"]
+    name: 'Numan'
+
 }
 
 const myReducer = (state, action) => {
@@ -14,39 +16,50 @@ const myReducer = (state, action) => {
             }
 
         default:
-            return state;
+            return state
     }
 }
 
+const Coder3 = () => {
+    return (
+        <>
+            <div>Coder3---</div>
+            <h3>Name: </h3>
+        </>
+    )
+}
+
+const Coder2 = () => {
+    return (
+        <>
+            <div>Coder2---</div>
+            <Coder3 />
+        </>
+    )
+}
+
+const Coder1 = () => {
+    return (
+        <>
+            <div>Coder1---</div>
+            <Coder2 />
+        </>
+    )
+}
+
 const App = () => {
-
     const [data, dispatch] = useReducer(myReducer, initialState)
-    const [data2, dispatch2] = useReducer(myReducer, initialState)
-
-    console.log(data);
-
-
-    const getName = () => {
-        fetch('https://jsonplaceholder.typicode.com/users/1')
-            .then(res => res.json())
-            .then(data => {
-                dispatch({ type: 'CHANGE_NAME', payload: data.name })
-            })
-    }
 
     return (
-        <div>
-            <h3>Hello {data.name}</h3>
-            <h3>Pro {data.pro[0]}</h3>
+        <>
+            <myContext.Provider value={name}>
+                <h3>Hello {data.name}</h3>
+                <button onClick={() => dispatch({ type: 'CHANGE_NAME', payload: 'Ahmed' })}>change name</button>
 
-            <button onClick={getName}>changeName</button>
-
-            <br />
-            <h3>I m {data2.name}</h3>
-            <h3>Pro {data2.pro[1]}</h3>
-            
-            <button onClick={()=> dispatch2({type: 'CHANGE_NAME', payload: "MD"})}>changeName</button>
-        </div>
+                <br /><br /><br />
+                <Coder1 />
+            </myContext.Provider>
+        </>
     );
 }
 
