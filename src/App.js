@@ -1,52 +1,21 @@
-import React, { Component } from 'react';
-import Employee from './Employee';
+import { useState } from 'react';
 
-import { Provider } from './Context';
+const App = () => {
+    const [counter, setCounter] = useState(0);
 
-class App extends Component {
-    state = {
-        name: 'Numan',
-        pro: 'MERN Stack Developer',
-        salary: 15000,
-        experience: 1
-    }
+    return (
+        <>
+            <div
+                onClick={() => setCounter((previousValue) => {
+                    console.log('prevoiusValue: ', previousValue);
+                    return previousValue + 1
+                })}
+            >
 
-    calculateSalIncPercentage = (salary) => {
-        return Math.round(((25 / 100) * salary));
-    }
-
-    increaseExperience = () => {
-        // let newSalary = Math.round((data.expense / data.income) * 100)
-        this.setState({
-            experience: this.state.experience + 1,
-            salary: this.state.salary + this.calculateSalIncPercentage(this.state.salary),
-        },
-            () => {
-                if (this.state.experience === 3) {
-                    this.updatePro();
-                }
-            }
-        );
-    }
-
-    updatePro = () => {
-        this.setState({ pro: 'Full stack Developer' });
-    }
-
-    render() {
-        const data = {
-            stateData: this.state,
-            increaseExperience: this.increaseExperience
-        }
-
-        return (
-            <>
-                <Provider value={data}>
-                    <h2>App Component</h2>
-                    <Employee />
-                </Provider>
-            </>
-        );
-    }
+                <h1>Counter: {counter}</h1>
+            </div>
+        </>
+    );
 }
+
 export default App;
