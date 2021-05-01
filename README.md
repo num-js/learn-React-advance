@@ -1,3 +1,5 @@
-# Learning Context & Hooks
+# Learning React Advance
 
-This Repo is for Learning Context & Hooks
+- [x] Context API
+- [ ] Ref
+- [ ] Memo
