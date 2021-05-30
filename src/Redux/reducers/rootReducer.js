@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import changeNum from './counterReducer';
+import todoReducer from './todoReducer';
 
 const rootReducer = combineReducers({
-    changeNum
+    todoReducer
 });
 
 export default rootReducer;
